@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 import tddmicroexercises.tirepressuremonitoringsystem.Alarm;
 import tddmicroexercises.tirepressuremonitoringsystem.SafetyRange;
@@ -10,9 +11,16 @@ import static org.mockito.Mockito.mock;
 
 public class AlarmShould {
 
+    private SafetyRange safetyRange;
+
+    @Before
+    public void setUp() throws Exception {
+        safetyRange = new SafetyRange(17, 21);
+    }
+
     @Test
     public void be_on_when_pressure_value_is_too_low() {
-        Alarm alarm = new Alarm(sensorThatProbes(5.0), new SafetyRange(17, 21));
+        Alarm alarm = new Alarm(sensorThatProbes(5.0), safetyRange);
 
         alarm.check();
 
@@ -21,7 +29,7 @@ public class AlarmShould {
 
     @Test
     public void be_on_when_pressure_value_is_too_high() {
-        Alarm alarm = new Alarm(sensorThatProbes(25.0), new SafetyRange(17, 21));
+        Alarm alarm = new Alarm(sensorThatProbes(25.0), safetyRange);
 
         alarm.check();
 
@@ -30,7 +38,7 @@ public class AlarmShould {
 
     @Test
     public void be_off_when_pressure_value_is_within_safety_range() {
-        Alarm alarm = new Alarm(sensorThatProbes(20.0), new SafetyRange(17, 21));
+        Alarm alarm = new Alarm(sensorThatProbes(20.0), safetyRange);
 
         alarm.check();
 
