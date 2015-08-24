@@ -36,10 +36,10 @@ public class AlarmShould {
 
         assertThat(alarm.isAlarmOn(), is(false));
     }
-    
+
     protected Sensor sensorThatProbes(double value) {
         Sensor sensor = mock(Sensor.class);
-        doReturn(value).when(sensor).popNextPressurePsiValue();
+        doReturn(value).when(sensor).probePressureValue();
         return sensor;
     }
 }
