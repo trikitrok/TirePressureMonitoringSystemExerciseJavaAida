@@ -23,7 +23,7 @@ public class Alarm {
     }
 
     protected boolean isNotWithinSafetyRange(double pressureValue) {
-        return pressureValue < LowPressureThreshold || HighPressureThreshold < pressureValue;
+        return safetyRange.isNotWithin(pressureValue);
     }
 
     public boolean isAlarmOn() {
@@ -37,6 +37,10 @@ public class Alarm {
         public SafetyRange(double lowerThreshold, double higherThreshold) {
             this.lowerThreshold = lowerThreshold;
             this.higherThreshold = higherThreshold;
+        }
+
+        public boolean isNotWithin(double value) {
+            return value < lowerThreshold || higherThreshold < value;
         }
     }
 }
