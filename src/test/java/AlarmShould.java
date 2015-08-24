@@ -15,6 +15,24 @@ public class AlarmShould {
         assertThat(alarm.isAlarmOn(), is(true));
     }
 
+    @Test
+    public void be_on_when_pressure_value_is_too_high() {
+        Alarm alarm = new FakeAlarm(25.0);
+
+        alarm.check();
+
+        assertThat(alarm.isAlarmOn(), is(true));
+    }
+
+    @Test
+    public void be_off_when_pressure_value_is_within_safety_range() {
+        Alarm alarm = new FakeAlarm(20.0);
+
+        alarm.check();
+
+        assertThat(alarm.isAlarmOn(), is(false));
+    }
+
     private class FakeAlarm extends Alarm {
         private final double samplePressure;
 
