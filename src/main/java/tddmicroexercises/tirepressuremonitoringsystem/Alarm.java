@@ -2,25 +2,25 @@ package tddmicroexercises.tirepressuremonitoringsystem;
 
 public class Alarm {
     private final SafetyRange safetyRange;
-    private TelemetryPressureSensor sensor;
+    private Sensor sensor;
     private boolean alarmOn;
 
-    public Alarm(TelemetryPressureSensor sensor, SafetyRange safetyRange) {
+    public Alarm(Sensor sensor, SafetyRange safetyRange) {
         this.sensor = sensor;
         this.safetyRange = safetyRange;
         this.alarmOn = false;
     }
 
     public void check() {
-        double pressureValue = sensor.probe();
+        double value = sensor.probe();
 
-        if (isNotWithinSafetyRange(pressureValue)) {
+        if (isNotWithinSafetyRange(value)) {
             alarmOn = true;
         }
     }
 
-    protected boolean isNotWithinSafetyRange(double pressureValue) {
-        return safetyRange.isNotWithin(pressureValue);
+    protected boolean isNotWithinSafetyRange(double value) {
+        return safetyRange.isNotWithin(value);
     }
 
     public boolean isAlarmOn() {
