@@ -1,10 +1,7 @@
 package tddmicroexercises.tirepressuremonitoringsystem;
 
 public class Alarm {
-    private final double LowPressureThreshold = 17;
-    private final double HighPressureThreshold = 21;
     private final SafetyRange safetyRange;
-
     private Sensor sensor;
     private boolean alarmOn;
 
