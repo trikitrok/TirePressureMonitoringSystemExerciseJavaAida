@@ -23,7 +23,9 @@ public class AlarmShould {
 
     @Test
     public void be_on_when_pressure_value_is_too_high() {
-        Alarm alarm = new FakeAlarm(25.0);
+        Sensor sensor = mock(Sensor.class);
+        doReturn(25.0).when(sensor).popNextPressurePsiValue();
+        Alarm alarm = new Alarm(sensor);
 
         alarm.check();
 
