@@ -15,9 +15,13 @@ public class Alarm {
     public void check() {
         double pressureValue = sensor.probePressureValue();
 
-        if (pressureValue < LowPressureThreshold || HighPressureThreshold < pressureValue) {
+        if (isNotWithinSafetyRange(pressureValue)) {
             alarmOn = true;
         }
+    }
+
+    protected boolean isNotWithinSafetyRange(double pressureValue) {
+        return pressureValue < LowPressureThreshold || HighPressureThreshold < pressureValue;
     }
 
     public boolean isAlarmOn() {
