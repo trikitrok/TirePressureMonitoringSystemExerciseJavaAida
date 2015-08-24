@@ -12,9 +12,7 @@ public class AlarmShould {
 
     @Test
     public void be_on_when_pressure_value_is_too_low() {
-        Sensor sensor = mock(Sensor.class);
-        doReturn(5.0).when(sensor).popNextPressurePsiValue();
-        Alarm alarm = new Alarm(sensor);
+        Alarm alarm = new Alarm(sensorThatProbes(5.0));
 
         alarm.check();
 
@@ -23,9 +21,7 @@ public class AlarmShould {
 
     @Test
     public void be_on_when_pressure_value_is_too_high() {
-        Sensor sensor = mock(Sensor.class);
-        doReturn(25.0).when(sensor).popNextPressurePsiValue();
-        Alarm alarm = new Alarm(sensor);
+        Alarm alarm = new Alarm(sensorThatProbes(25.0));
 
         alarm.check();
 
@@ -34,7 +30,7 @@ public class AlarmShould {
 
     @Test
     public void be_off_when_pressure_value_is_within_safety_range() {
-        Alarm alarm = new FakeAlarm(20.0);
+        Alarm alarm = new Alarm(sensorThatProbes(20.0));
 
         alarm.check();
 
@@ -49,6 +45,12 @@ public class AlarmShould {
         alarm.check();
 
         verify(sensor).popNextPressurePsiValue();
+    }
+
+    protected Sensor sensorThatProbes(double value) {
+        Sensor sensor = mock(Sensor.class);
+        doReturn(value).when(sensor).popNextPressurePsiValue();
+        return sensor;
     }
 
     private class FakeAlarm extends Alarm {
