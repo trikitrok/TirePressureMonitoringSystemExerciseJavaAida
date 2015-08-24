@@ -8,10 +8,10 @@ public class Alarm {
     private Sensor sensor;
     private boolean alarmOn;
 
-    public Alarm(Sensor sensor) {
+    public Alarm(Sensor sensor, SafetyRange safetyRange) {
         this.sensor = sensor;
+        this.safetyRange = safetyRange;
         this.alarmOn = false;
-        this.safetyRange = new SafetyRange(LowPressureThreshold, HighPressureThreshold);
     }
 
     public void check() {
@@ -30,17 +30,4 @@ public class Alarm {
         return alarmOn;
     }
 
-    private class SafetyRange {
-        private final double lowerThreshold;
-        private final double higherThreshold;
-
-        public SafetyRange(double lowerThreshold, double higherThreshold) {
-            this.lowerThreshold = lowerThreshold;
-            this.higherThreshold = higherThreshold;
-        }
-
-        public boolean isNotWithin(double value) {
-            return value < lowerThreshold || higherThreshold < value;
-        }
-    }
 }
