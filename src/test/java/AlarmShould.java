@@ -16,7 +16,7 @@ public class AlarmShould {
     public void be_on_when_probed_value_is_too_low() {
         alarm = anAlarm().
                 usingSensor(thatProbes(5.0)).
-                andWithSafetyRange(17, 21).
+                andWithSafetyRange(5.5, 21).
                 build();
 
         alarm.check();
@@ -28,7 +28,7 @@ public class AlarmShould {
     public void be_on_when_probed_value_is_too_high() {
         alarm = anAlarm().
                 usingSensor(thatProbes(25.0)).
-                andWithSafetyRange(17, 21).
+                andWithSafetyRange(17.0, 24.5).
                 build();
 
         alarm.check();
@@ -40,7 +40,7 @@ public class AlarmShould {
     public void be_off_when_probed_value_is_within_safety_range() {
         alarm = anAlarm().
                 usingSensor(thatProbes(20.0)).
-                andWithSafetyRange(17, 21).
+                andWithSafetyRange(19.5, 20.3).
                 build();
 
         alarm.check();
