@@ -4,9 +4,17 @@ public class Alarm {
     private final double LowPressureThreshold = 17;
     private final double HighPressureThreshold = 21;
 
-    private Sensor sensor = new Sensor();
+    private Sensor sensor;
+    private boolean alarmOn;
 
-    private boolean alarmOn = false;
+    public Alarm(Sensor sensor) {
+        this.sensor = sensor;
+        this.alarmOn = false;
+    }
+
+    public Alarm() {
+        this(new Sensor());
+    }
 
     public void check() {
         double psiPressureValue = probeValue();
