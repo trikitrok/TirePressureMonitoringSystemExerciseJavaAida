@@ -5,7 +5,7 @@ import java.util.Random;
 public class TelemetryPressureSensor {
     public static final double OFFSET = 16;
 
-    public double probePressureValue() {
+    public double probe() {
         double pressureTelemetryValue;
         pressureTelemetryValue = samplePressure();
 

@@ -12,7 +12,7 @@ public class Alarm {
     }
 
     public void check() {
-        double pressureValue = sensor.probePressureValue();
+        double pressureValue = sensor.probe();
 
         if (isNotWithinSafetyRange(pressureValue)) {
             alarmOn = true;

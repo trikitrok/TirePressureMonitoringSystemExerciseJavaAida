@@ -47,7 +47,7 @@ public class AlarmShould {
 
     protected TelemetryPressureSensor sensorThatProbes(double value) {
         TelemetryPressureSensor sensor = mock(TelemetryPressureSensor.class);
-        doReturn(value).when(sensor).probePressureValue();
+        doReturn(value).when(sensor).probe();
         return sensor;
     }
 }
