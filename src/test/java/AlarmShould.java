@@ -36,17 +36,7 @@ public class AlarmShould {
 
         assertThat(alarm.isAlarmOn(), is(false));
     }
-
-    @Test
-    public void collaborate_with_an_injected_sensor() {
-        Sensor sensor = mock(Sensor.class);
-        Alarm alarm = new Alarm(sensor);
-
-        alarm.check();
-
-        verify(sensor).popNextPressurePsiValue();
-    }
-
+    
     protected Sensor sensorThatProbes(double value) {
         Sensor sensor = mock(Sensor.class);
         doReturn(value).when(sensor).popNextPressurePsiValue();
