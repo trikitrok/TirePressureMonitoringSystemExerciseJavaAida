@@ -52,18 +52,4 @@ public class AlarmShould {
         doReturn(value).when(sensor).popNextPressurePsiValue();
         return sensor;
     }
-
-    private class FakeAlarm extends Alarm {
-        private final double samplePressure;
-
-        public FakeAlarm(double samplePressure) {
-            super();
-            this.samplePressure = samplePressure;
-        }
-
-        @Override
-        protected double probeValue() {
-            return samplePressure;
-        }
-    }
 }

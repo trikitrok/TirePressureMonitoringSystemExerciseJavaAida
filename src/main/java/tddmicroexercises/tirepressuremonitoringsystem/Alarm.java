@@ -12,20 +12,12 @@ public class Alarm {
         this.alarmOn = false;
     }
 
-    public Alarm() {
-        this(new Sensor());
-    }
-
     public void check() {
-        double psiPressureValue = probeValue();
+        double psiPressureValue = sensor.popNextPressurePsiValue();
 
         if (psiPressureValue < LowPressureThreshold || HighPressureThreshold < psiPressureValue) {
             alarmOn = true;
         }
-    }
-
-    protected double probeValue() {
-        return sensor.popNextPressurePsiValue();
     }
 
     public boolean isAlarmOn() {
