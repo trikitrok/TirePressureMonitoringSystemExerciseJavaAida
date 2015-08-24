@@ -10,9 +10,11 @@ import static org.mockito.Mockito.mock;
 
 public class AlarmShould {
 
+    private Alarm alarm;
+
     @Test
     public void be_on_when_probed_value_is_too_low() {
-        Alarm alarm = anAlarm().
+        alarm = anAlarm().
                 usingSensor(thatProbes(5.0)).
                 andWithSafetyRange(17, 21).
                 build();
@@ -24,7 +26,7 @@ public class AlarmShould {
 
     @Test
     public void be_on_when_probed_value_is_too_high() {
-        Alarm alarm = anAlarm().
+        alarm = anAlarm().
                 usingSensor(thatProbes(25.0)).
                 andWithSafetyRange(17, 21).
                 build();
@@ -36,7 +38,7 @@ public class AlarmShould {
 
     @Test
     public void be_off_when_probed_value_is_within_safety_range() {
-        Alarm alarm = anAlarm().
+        alarm = anAlarm().
                 usingSensor(thatProbes(20.0)).
                 andWithSafetyRange(17, 21).
                 build();
