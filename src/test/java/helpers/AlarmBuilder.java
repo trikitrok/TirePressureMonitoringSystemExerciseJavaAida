@@ -5,7 +5,7 @@ import tddmicroexercises.tirepressuremonitoringsystem.SafetyRange;
 import tddmicroexercises.tirepressuremonitoringsystem.Sensor;
 
 public class AlarmBuilder {
-    private SafetyRange safetyRange;
+    private SafetyRangeBuilder safetyRangeBuilder;
     private Sensor sensor;
 
     public static AlarmBuilder anAlarm() {
@@ -17,12 +17,12 @@ public class AlarmBuilder {
         return this;
     }
 
-    public AlarmBuilder andWithSafetyRange(double lowerThreshold, double higherThreshold) {
-        this.safetyRange = new SafetyRange(lowerThreshold, higherThreshold);
+    public AlarmBuilder and(SafetyRangeBuilder safetyRangeBuilder) {
+        this.safetyRangeBuilder = safetyRangeBuilder;
         return this;
     }
 
     public Alarm build() {
-        return new Alarm(sensor, safetyRange);
+        return new Alarm(sensor, safetyRangeBuilder.build());
     }
 }
